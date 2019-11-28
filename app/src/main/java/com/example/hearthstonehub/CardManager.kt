@@ -26,7 +26,7 @@ class CardManager {
     }
 
     // Searching deck
-/*
+
     fun retrieveDeckInfo(deckCode: String): List<CardsInfo> {
 
         val locale = "en_US"
@@ -76,7 +76,7 @@ class CardManager {
         return deck
     }
 
-*/
+
         fun retrieveWeaponInfo(): List<CardsInfo> {
 
 
@@ -98,7 +98,7 @@ class CardManager {
                     val curr = cards.getJSONObject(i)
                     val id = curr.getInt("id")
                     val name = curr.getString("name")
-                    val health = curr.getInt("health")
+                    val health = curr.getInt("durability")
                     val attack = curr.getInt("attack")
                     val manaCost = curr.getInt("manaCost")
                     val description = curr.getString("text")
@@ -107,14 +107,14 @@ class CardManager {
 
                     weaponList.add(
                         CardsInfo(
-                            //cardID = id,
-                            cardName = name
-                            //health = health,
-                            //attack = attack,
-                            //manaCost = manaCost
-                            //description = description,
-                            //image = image,
-                            //flavorText = flavorText
+                            cardID = id,
+                            cardName = name,
+                            health = health,
+                            attack = attack,
+                            manaCost = manaCost,
+                            description = description,
+                            image = image,
+                            flavorText = flavorText
                         )
                     )
                 }

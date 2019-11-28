@@ -19,18 +19,30 @@ class Single_card_info : AppCompatActivity() {
 
 
         val searchingType: Int = intent.getIntExtra("searchingType", 0)
-
+        //val deckCodeInput: String = intent.getStringExtra("deckCodeInput")
 
         recyclerView = findViewById(R.id.card_list)
 
         recyclerView.layoutManager = LinearLayoutManager(this)
+
+        /*
+        doAsync {
+            val cardManager = CardManager()
+            val cards = cardManager.retrieveWeaponInfo()
+
+            runOnUiThread{
+                recyclerView.adapter = CardAdapter(cards)
+            }
+
+        }
+*/
 
         doAsync {
 
             val cardsManager = CardManager()
 
             try {
-
+                //val cardsManager = CardManager()
                 val resultList = cardsManager.retrieveWeaponInfo()
 
                 runOnUiThread{
@@ -45,6 +57,7 @@ class Single_card_info : AppCompatActivity() {
                 }
             }
         }
+
 
 
     }

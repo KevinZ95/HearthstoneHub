@@ -32,7 +32,7 @@ class CardAdapter (val cards:List<CardsInfo>): RecyclerView.Adapter<CardAdapter.
         holder.health.text = "health: " + currentCardsInfo.health
         holder.attatck.text = "attack: " + currentCardsInfo.attack
         holder.description.text = currentCardsInfo.description
-        holder.flaverText.text = " ' " + currentCardsInfo.flavorText + " ' "
+        holder.flavorText.text = " ' " + currentCardsInfo.flavorText + " ' "
 
         // Picasso.get().setIndicatorsEnabled(true)
 
@@ -51,9 +51,8 @@ class CardAdapter (val cards:List<CardsInfo>): RecyclerView.Adapter<CardAdapter.
         val health: TextView = view.findViewById(R.id.health)
         val attatck: TextView = view.findViewById(R.id.attack)
         val description: TextView = view.findViewById(R.id.card_description)
-        val flaverText: TextView = view.findViewById(R.id.card_flavorText)
+        val flavorText: TextView = view.findViewById(R.id.card_flavorText)
     }
-
 
 
 }
