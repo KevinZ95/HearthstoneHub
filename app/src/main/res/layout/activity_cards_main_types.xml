@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".cards_main_types">
+
+    <Button
+        android:id="@+id/type_spell"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="130dp"
+        android:text="SPELL"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/type_weapon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="130dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginRight="80dp"
+        android:text="WEAPON"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/type_spell"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/type_minion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="80dp"
+        android:text="MINION"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/type_spell" />
+
+    <Button
+        android:id="@+id/types_hero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginRight="80dp"
+        android:text="HERO"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/type_minion"
+        app:layout_constraintTop_toBottomOf="@+id/type_weapon" />
+
+    <Button
+        android:id="@+id/search_deck"
+        android:layout_width="257dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="15dp"
+        android:text="Search Deck"
+        app:layout_constraintEnd_toEndOf="@+id/deck_code_input"
+        app:layout_constraintStart_toStartOf="@+id/deck_code_input"
+        app:layout_constraintTop_toBottomOf="@+id/deck_code_input" />
+
+    <EditText
+        android:id="@+id/deck_code_input"
+        android:layout_width="256dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="80dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Deck Code"
+        app:layout_constraintStart_toStartOf="@+id/type_minion"
+        app:layout_constraintTop_toBottomOf="@+id/type_minion" />
+</androidx.constraintlayout.widget.ConstraintLayout>
