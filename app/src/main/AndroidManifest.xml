@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.hearthstonehub">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,10 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".cards_minion_list"></activity>
+        <activity android:name=".cards_spell_list" />
+        <activity android:name=".cards_main_types" />
         <activity
             android:name=".card_classification"
             android:label="@string/title_activity_card_classification"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".cards_classification" />
         <activity android:name=".Single_card_info" />
         <activity android:name=".Register_page" />

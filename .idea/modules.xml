@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/HearthStoneHub.iml" filepath="$PROJECT_DIR$/HearthStoneHub.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/project-2-bring-your-own-idea-hearthstonehub.iml" filepath="$PROJECT_DIR$/.idea/project-2-bring-your-own-idea-hearthstonehub.iml" />
+    </modules>
+  </component>
+</project>

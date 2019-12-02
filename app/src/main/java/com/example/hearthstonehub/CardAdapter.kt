@@ -11,12 +11,12 @@ import com.squareup.picasso.Picasso
 
 // Unfinished here
 
-class CardAdapter (val cards:List<CardsInfo>)  : RecyclerView.Adapter<CardAdapter.cardViewHolder>() {
+class CardAdapter (val cards:List<CardsInfo>): RecyclerView.Adapter<CardAdapter.cardViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): cardViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.row_yelp, parent, false)
-        return yelpViewHolder(view)
+            .inflate(R.layout.row_card, parent, false)
+        return cardViewHolder(view)
     }
 
 
@@ -24,30 +24,35 @@ class CardAdapter (val cards:List<CardsInfo>)  : RecyclerView.Adapter<CardAdapte
         return cards.size
     }
 
-    override fun onBindViewHolder(holder: yelpViewHolder, position: Int) {
-        val currentBusiness = cards[position]
+    override fun onBindViewHolder(holder: cardViewHolder, position: Int) {
+        val currentCardsInfo = cards[position]
 
-        // need changes here
-        holder.name.text = currentBusiness.name
-        holder.handle.text = currentBusiness.address
-        holder.content.text = currentBusiness.info
+        holder.name.text = currentCardsInfo.cardName
+        holder.mana_cost.text = "Mana: " + currentCardsInfo.manaCost
+        holder.health.text = "health: " + currentCardsInfo.health
+        holder.attatck.text = "attack: " + currentCardsInfo.attack
+        holder.description.text = currentCardsInfo.description
+        holder.flavorText.text = " ' " + currentCardsInfo.flavorText + " ' "
+
+        // Picasso.get().setIndicatorsEnabled(true)
 
         Picasso
             .get()
-            .load(currentBusiness.iconUrl)
+            .load(currentCardsInfo.image)
             .into(holder.icon)
 
-
     }
 
-    class yelpViewHolder(view: View): RecyclerView.ViewHolder(view) {
+    class cardViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
-        val icon: ImageView = view.findViewById(R.id.icon)
-        val name: TextView = view.findViewById(R.id.username)
-        val handle: TextView = view.findViewById(R.id.handle)
-        val content: TextView = view.findViewById(R.id.tweet_content)
+        val icon: ImageView = view.findViewById(R.id.card_icon)
+        val name: TextView = view.findViewById(R.id.card_name)
+        val mana_cost: TextView = view.findViewById(R.id.mana_cost)
+        val health: TextView = view.findViewById(R.id.health)
+        val attatck: TextView = view.findViewById(R.id.attack)
+        val description: TextView = view.findViewById(R.id.card_description)
+        val flavorText: TextView = view.findViewById(R.id.card_flavorText)
     }
-
 
 
 }
