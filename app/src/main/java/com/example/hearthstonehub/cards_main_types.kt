@@ -22,10 +22,8 @@ class cards_main_types : AppCompatActivity() {
         var searchingType = 0;
         // weapon: 1
         // hero: 2
-        // deck = 3
-
-        var deckCode = findViewById(R.id.deck_code_input) as EditText
-
+        // minion = 3
+        val deckCode = findViewById(R.id.deck_code_input) as EditText
         val goDeck = findViewById<Button>(R.id.search_deck)
 
 
@@ -38,7 +36,8 @@ class cards_main_types : AppCompatActivity() {
         }
 
         goMinion.setOnClickListener {
-            val intent = Intent(this@cards_main_types, cards_minion_list::class.java)
+            searchingType = 3
+            val intent = Intent(this@cards_main_types, Single_card_info::class.java)
             startActivity(intent)
         }
 
@@ -60,13 +59,13 @@ class cards_main_types : AppCompatActivity() {
         }
 
         goDeck.setOnClickListener {
-            // setting searchingType as deck
-            searchingType = 3
+
             // testing
-            val testingCode = "AAECAQcG+wyd8AKS+AKggAOblAPanQMMS6IE/web8wLR9QKD+wKe+wKz/AL1gAOXlAOalAOSnwMA"
-            val intent = Intent(this@cards_main_types, Single_card_info::class.java)
-            intent.putExtra("searchingType", searchingType)
-            intent.putExtra("deckCodeInput", /*deckCode.toString()*/ testingCode)
+            val deckCodeInput = deckCode.getText().toString()
+            //val deckCodeInput = "AAECAQcG+wyd8AKS+AKggAOblAPanQMMS6IE/web8wLR9QKD+wKe+wKz/AL1gAOXlAOalAOSnwMA"
+            val intent = Intent(this@cards_main_types, cards_deck_list::class.java)
+            // intent.putExtra("searchingType", searchingType)
+            intent.putExtra("deckCodeInput", deckCodeInput)
             startActivity(intent)
         }
 

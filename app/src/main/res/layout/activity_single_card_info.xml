@@ -7,7 +7,7 @@
     tools:context=".Single_card_info">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/card_list"
+        android:id="@+id/deck_spell_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

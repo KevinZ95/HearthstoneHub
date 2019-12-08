@@ -8,15 +8,148 @@
 
     <TextView
         android:id="@+id/spell_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="91dp"
+        android:layout_height="37dp"
         android:layout_marginStart="50dp"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="60dp"
         android:layout_marginRight="60dp"
         android:text="Classes"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.523"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/spell_recyclerView"
+        android:layout_width="400dp"
+        android:layout_height="328dp"
+        android:layout_marginTop="32dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spell_warlock" />
+
+    <ImageButton
+        android:id="@+id/spell_druid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginTop="24dp"
+        android:background="#00FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spell_title"
+        app:srcCompat="@drawable/ic_class_druid_alt" />
+
+    <ImageButton
+        android:id="@+id/spell_hunter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="#00FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/spell_druid"
+        app:layout_constraintEnd_toStartOf="@+id/spell_mage"
+        app:layout_constraintStart_toEndOf="@+id/spell_druid"
+        app:layout_constraintTop_toTopOf="@+id/spell_druid"
+        app:srcCompat="@drawable/ic_class_hunter" />
+
+    <ImageButton
+        android:id="@+id/spell_mage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="64dp"
+        android:layout_marginRight="64dp"
+        android:background="#00FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/spell_hunter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/spell_hunter"
+        app:srcCompat="@drawable/ic_class_mage" />
+
+    <ImageButton
+        android:id="@+id/spell_paladin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="#00FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/spell_priest"
+        app:layout_constraintEnd_toStartOf="@+id/spell_rogue"
+        app:layout_constraintStart_toEndOf="@+id/spell_priest"
+        app:layout_constraintTop_toTopOf="@+id/spell_priest"
+        app:srcCompat="@drawable/ic_class_paladin_alt" />
+
+    <ImageButton
+        android:id="@+id/spell_priest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginTop="16dp"
+        android:background="#00FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spell_druid"
+        app:srcCompat="@drawable/ic_class_priest" />
+
+    <ImageButton
+        android:id="@+id/spell_rogue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="64dp"
+        android:layout_marginRight="64dp"
+        android:background="#00FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/spell_paladin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/spell_paladin"
+        app:srcCompat="@drawable/ic_class_rogue" />
+
+    <ImageButton
+        android:id="@+id/spell_shaman"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="64dp"
+        android:layout_marginRight="64dp"
+        android:background="#00FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/spell_warrior"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/spell_warrior"
+        app:srcCompat="@drawable/ic_class_shaman_alt" />
+
+    <ImageButton
+        android:id="@+id/spell_warlock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginTop="16dp"
+        android:background="#00FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spell_priest"
+        app:srcCompat="@drawable/ic_class_warlock" />
+
+    <ImageButton
+        android:id="@+id/spell_warrior"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="#00FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/spell_warlock"
+        app:layout_constraintEnd_toStartOf="@+id/spell_shaman"
+        app:layout_constraintStart_toEndOf="@+id/spell_warlock"
+        app:layout_constraintTop_toTopOf="@+id/spell_warlock"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_class_warrior" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

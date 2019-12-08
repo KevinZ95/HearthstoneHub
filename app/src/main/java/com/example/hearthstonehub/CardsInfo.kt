@@ -8,7 +8,7 @@ data class CardsInfo constructor(
     val health: Number,
     val attack: Number,
     val manaCost: Number,
-    val description: String,
+    // val description: String,
     val image: String,
     val flavorText: String
 )
