@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 
-class SpellAdapter (val cards:List<CardsInfo>): RecyclerView.Adapter<SpellAdapter.spellViewHolder>() {
+class SpellAdapter (val cards:List<Spell_Info>): RecyclerView.Adapter<SpellAdapter.spellViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SpellAdapter.spellViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.spell_card, parent, false)

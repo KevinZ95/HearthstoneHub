@@ -34,7 +34,7 @@ class CardManager {
 
     }
 */
-
+    val accessToken = "USuVhFISaG0vGpniXHZofpy5E13q35GnUK"
 
 
 
@@ -45,7 +45,6 @@ class CardManager {
 
         val locale = "en_US"
 
-        val accessToken = "USuVhFISaG0vGpniXHZofpy5E13q35GnUK"
         val request = Request.Builder()
             .url("https://us.api.blizzard.com/hearthstone/deck/$deckCode&?locale=$locale&access_token=$accessToken")
             //.header("Authorization","Bearer USsfKdzCkWSfUmFwk6mN6s5U9pbI0lCdOA")
@@ -96,7 +95,6 @@ class CardManager {
 
 
             val locale = "en_US"
-            val accessToken = "USuVhFISaG0vGpniXHZofpy5E13q35GnUK"
 
 
             val request = Request.Builder()
@@ -149,7 +147,6 @@ class CardManager {
 
 
         val locale = "en_US"
-        val accessToken = "USuVhFISaG0vGpniXHZofpy5E13q35GnUK"
 
         val request = Request.Builder()
             .url("https://us.api.blizzard.com/hearthstone/cards?locale=$locale&type=hero&sort=name&order=asc&access_token=$accessToken")
@@ -202,8 +199,6 @@ class CardManager {
 
 
         val locale = "en_US"
-        val accessToken = "USuVhFISaG0vGpniXHZofpy5E13q35GnUK"
-
 
         val request = Request.Builder()
             .url("https://us.api.blizzard.com/hearthstone/cards?locale=$locale&type=minion&sort=name&order=asc&access_token=$accessToken")
@@ -251,6 +246,49 @@ class CardManager {
 
 
     // searching spell
+    fun retrieveSpellInfo(classType: String): List<Spell_Info> {
 
 
+        val locale = "en_US"
+
+        val classType = classType
+
+        val request = Request.Builder()
+            .url("https://us.api.blizzard.com/hearthstone/cards?locale=$locale&class=$classType&type=spell&sort=manaCost&order=asc&access_token=$accessToken")
+            //.header("Authorization","Bearer USsfKdzCkWSfUmFwk6mN6s5U9pbI0lCdOA")
+            .build()
+
+        val response = okHttpClient.newCall(request).execute()
+        val responseString = response.body?.string()
+        val spellList = mutableListOf<Spell_Info>()
+
+        if (response.isSuccessful && !responseString.isNullOrEmpty()) {
+            val json = JSONObject(responseString)
+            val cards = json.getJSONArray("cards")
+
+            for (i in 0 until cards.length()) {
+                val curr = cards.getJSONObject(i)
+                val id = curr.getInt("id")
+                val name = curr.getString("name")
+                val manaCost = curr.getInt("manaCost")
+                //val description = curr.getString("text")
+                val flavorText = curr.getString("flavorText")
+                val image = curr.getString("image")
+
+                spellList.add(
+                    Spell_Info(
+                        cardID = id,
+                        cardName = name,
+                        manaCost = manaCost,
+                        //description = description,
+                        image = image,
+                        flavorText = flavorText
+                    )
+                )
+            }
+
+
+        }
+        return spellList
+    }
 }
