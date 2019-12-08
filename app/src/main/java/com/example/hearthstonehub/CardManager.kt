@@ -41,7 +41,7 @@ class CardManager {
 
     // Searching deck
 
-    fun retrieveDeckInfo( deckCode: String): List<CardsInfo> {
+    fun retrieveDeckInfo(deckCode: String): List<CardsInfo> {
 
         val locale = "en_US"
 

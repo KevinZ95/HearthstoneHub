@@ -23,7 +23,7 @@ class Single_card_info : AppCompatActivity() {
 
 
 
-        recyclerView = findViewById(R.id.card_list)
+        recyclerView = findViewById(R.id.deck_spell_list)
 
         recyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -73,27 +73,6 @@ class Single_card_info : AppCompatActivity() {
                 try {
 
                     val resultList = cardsManager.retrieveHeroInfo()
-
-                    runOnUiThread{
-                        recyclerView.adapter = CardAdapter(resultList)
-                    }
-                } catch(e: Exception) {
-                    runOnUiThread {
-                        Toast.makeText(this@Single_card_info,
-                            "Error retriving info",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                }
-            }
-        } else if (searchingType == 3) { // searching deck
-            doAsync {
-
-                val cardsManager = CardManager()
-
-                try {
-
-                    val resultList = cardsManager.retrieveDeckInfo("AAECAQcG+wyd8AKS+AKggAOblAPanQMMS6IE/web8wLR9QKD+wKe+wKz/AL1gAOXlAOalAOSnwMA")
 
                     runOnUiThread{
                         recyclerView.adapter = CardAdapter(resultList)
