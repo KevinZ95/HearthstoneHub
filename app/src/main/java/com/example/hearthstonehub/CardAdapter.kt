@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 
-// Unfinished here
+
 
 class CardAdapter (val cards:List<CardsInfo>): RecyclerView.Adapter<CardAdapter.cardViewHolder>() {
 
@@ -31,10 +31,10 @@ class CardAdapter (val cards:List<CardsInfo>): RecyclerView.Adapter<CardAdapter.
         holder.mana_cost.text = "Mana: " + currentCardsInfo.manaCost
         holder.health.text = "health: " + currentCardsInfo.health
         holder.attatck.text = "attack: " + currentCardsInfo.attack
-        holder.description.text = currentCardsInfo.description
-        holder.flavorText.text = " ' " + currentCardsInfo.flavorText + " ' "
 
-        // Picasso.get().setIndicatorsEnabled(true)
+        holder.flavorText.text = currentCardsInfo.flavorText
+
+
 
         Picasso
             .get()
@@ -45,13 +45,13 @@ class CardAdapter (val cards:List<CardsInfo>): RecyclerView.Adapter<CardAdapter.
 
     class cardViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
-        val icon: ImageView = view.findViewById(R.id.card_icon)
-        val name: TextView = view.findViewById(R.id.card_name)
-        val mana_cost: TextView = view.findViewById(R.id.mana_cost)
+        val icon: ImageView = view.findViewById(R.id.spell_icon)
+        val name: TextView = view.findViewById(R.id.spell_name)
+        val mana_cost: TextView = view.findViewById(R.id.spell_mana_cost)
         val health: TextView = view.findViewById(R.id.health)
         val attatck: TextView = view.findViewById(R.id.attack)
-        val description: TextView = view.findViewById(R.id.card_description)
-        val flavorText: TextView = view.findViewById(R.id.card_flavorText)
+        //val description: TextView = view.findViewById(R.id.card_description)
+        val flavorText: TextView = view.findViewById(R.id.spell_flavorText)
     }
 
 

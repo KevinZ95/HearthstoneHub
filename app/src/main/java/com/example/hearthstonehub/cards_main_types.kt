@@ -23,7 +23,7 @@ class cards_main_types : AppCompatActivity() {
         // weapon: 1
         // hero: 2
         // deck = 3
-
+        // minion = 4
         var deckCode = findViewById(R.id.deck_code_input) as EditText
 
         val goDeck = findViewById<Button>(R.id.search_deck)
@@ -38,7 +38,8 @@ class cards_main_types : AppCompatActivity() {
         }
 
         goMinion.setOnClickListener {
-            val intent = Intent(this@cards_main_types, cards_minion_list::class.java)
+            searchingType = 4
+            val intent = Intent(this@cards_main_types, Single_card_info::class.java)
             startActivity(intent)
         }
 

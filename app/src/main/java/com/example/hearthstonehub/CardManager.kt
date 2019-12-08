@@ -24,15 +24,30 @@ class CardManager {
 
 
     }
+/*
+    fun retrieveOAuth(apiKey: String, apiSecret: String ): String{
+        val request = Request.Builder()
+            .url("https://api.twitter.com/oauth2/token")
+            .header("Authorization", "Basic $base64Combined")
+            .post(requestBody)
+            .build()
+
+    }
+*/
+
+
+
+
 
     // Searching deck
 
-    fun retrieveDeckInfo(deckCode: String): List<CardsInfo> {
+    fun retrieveDeckInfo( deckCode: String): List<CardsInfo> {
 
         val locale = "en_US"
 
+        val accessToken = "USuVhFISaG0vGpniXHZofpy5E13q35GnUK"
         val request = Request.Builder()
-            .url("https://us.api.blizzard.com/hearthstone/deck/$deckCode&?locale=$locale&access_token=USMFaWz2gTY0AiWaiMaEKI3hmVso9CE3bm")
+            .url("https://us.api.blizzard.com/hearthstone/deck/$deckCode&?locale=$locale&access_token=$accessToken")
             //.header("Authorization","Bearer USsfKdzCkWSfUmFwk6mN6s5U9pbI0lCdOA")
             .build()
 
@@ -52,7 +67,7 @@ class CardManager {
                 val health = curr.getInt("health")
                 val attack = curr.getInt("attack")
                 val manaCost = curr.getInt("manaCost")
-                val description = curr.getString("text")
+                //val description = curr.getString("text")
                 val flavorText = curr.getString("flavorText")
                 val image = curr.getString("image")
 
@@ -63,7 +78,7 @@ class CardManager {
                         health = health,
                         attack = attack,
                         manaCost = manaCost,
-                        description = description,
+                        //description = description,
                         image = image,
                         flavorText = flavorText
                     )
@@ -76,13 +91,16 @@ class CardManager {
         return deck
     }
 
-
+        // searching weapon
         fun retrieveWeaponInfo(): List<CardsInfo> {
 
 
             val locale = "en_US"
+            val accessToken = "USuVhFISaG0vGpniXHZofpy5E13q35GnUK"
+
+
             val request = Request.Builder()
-                .url("https://us.api.blizzard.com/hearthstone/cards?locale=$locale&type=weapon&sort=name&order=desc&access_token=USMFaWz2gTY0AiWaiMaEKI3hmVso9CE3bm")
+                .url("https://us.api.blizzard.com/hearthstone/cards?locale=$locale&type=weapon&sort=name&order=asc&access_token=$accessToken")
                 //.header("Authorization","Bearer USsfKdzCkWSfUmFwk6mN6s5U9pbI0lCdOA")
                 .build()
 
@@ -101,7 +119,7 @@ class CardManager {
                     val health = curr.getInt("durability")
                     val attack = curr.getInt("attack")
                     val manaCost = curr.getInt("manaCost")
-                    val description = curr.getString("text")
+                    //val description = curr.getString("text")
                     val flavorText = curr.getString("flavorText")
                     val image = curr.getString("image")
 
@@ -112,7 +130,7 @@ class CardManager {
                             health = health,
                             attack = attack,
                             manaCost = manaCost,
-                            description = description,
+                            //description = description,
                             image = image,
                             flavorText = flavorText
                         )
@@ -126,5 +144,113 @@ class CardManager {
             return weaponList
         }
 
+    // searching Hero cards
+    fun retrieveHeroInfo(): List<CardsInfo> {
 
+
+        val locale = "en_US"
+        val accessToken = "USuVhFISaG0vGpniXHZofpy5E13q35GnUK"
+
+        val request = Request.Builder()
+            .url("https://us.api.blizzard.com/hearthstone/cards?locale=$locale&type=hero&sort=name&order=asc&access_token=$accessToken")
+            //.header("Authorization","Bearer USsfKdzCkWSfUmFwk6mN6s5U9pbI0lCdOA")
+            .build()
+
+        val response = okHttpClient.newCall(request).execute()
+        val responseString = response.body?.string()
+        val heroList = mutableListOf<CardsInfo>()
+
+        if (response.isSuccessful && !responseString.isNullOrEmpty()) {
+            val json = JSONObject(responseString)
+            val cards = json.getJSONArray("cards")
+
+            for (i in 0 until cards.length()) {
+                val curr = cards.getJSONObject(i)
+                val id = curr.getInt("id")
+                val name = curr.getString("name")
+                val health = curr.getInt("health")
+                //val armor = curr.getInt("armor")
+                val manaCost = curr.getInt("manaCost")
+                val flavorText = curr.getString("flavorText")
+                val image = curr.getString("image")
+
+                if (image != "") { // only present the hero-cards which have uniqe
+                    heroList.add(
+                        CardsInfo(
+                            cardID = id,
+                            cardName = name,
+                            health = health,
+                            attack = 0,
+                            manaCost = manaCost,
+                            image = image,
+                            flavorText = flavorText
+                        )
+                    )
+                }
+
+            }
+
+
+        }
+
+
+        return heroList
     }
+
+    // searching minions
+    fun retrieveMinionInfo(): List<CardsInfo> {
+
+
+        val locale = "en_US"
+        val accessToken = "USuVhFISaG0vGpniXHZofpy5E13q35GnUK"
+
+
+        val request = Request.Builder()
+            .url("https://us.api.blizzard.com/hearthstone/cards?locale=$locale&type=minion&sort=name&order=asc&access_token=$accessToken")
+            //.header("Authorization","Bearer USsfKdzCkWSfUmFwk6mN6s5U9pbI0lCdOA")
+            .build()
+
+        val response = okHttpClient.newCall(request).execute()
+        val responseString = response.body?.string()
+        val minionList = mutableListOf<CardsInfo>()
+
+        if (response.isSuccessful && !responseString.isNullOrEmpty()) {
+            val json = JSONObject(responseString)
+            val cards = json.getJSONArray("cards")
+
+            for (i in 0 until cards.length()) {
+                val curr = cards.getJSONObject(i)
+                val id = curr.getInt("id")
+                val name = curr.getString("name")
+                val health = curr.getInt("health")
+                val attack = curr.getInt("attack")
+                val manaCost = curr.getInt("manaCost")
+                //val description = curr.getString("text")
+                val flavorText = curr.getString("flavorText")
+                val image = curr.getString("image")
+
+                minionList.add(
+                    CardsInfo(
+                        cardID = id,
+                        cardName = name,
+                        health = health,
+                        attack = attack,
+                        manaCost = manaCost,
+                        //description = description,
+                        image = image,
+                        flavorText = flavorText
+                    )
+                )
+            }
+
+
+        }
+
+        return minionList
+    }
+
+
+    // searching spell
+
+
+}

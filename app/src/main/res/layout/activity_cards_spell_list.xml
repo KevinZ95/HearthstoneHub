@@ -8,15 +8,140 @@
 
     <TextView
         android:id="@+id/spell_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="91dp"
+        android:layout_height="37dp"
         android:layout_marginStart="50dp"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="60dp"
         android:layout_marginRight="60dp"
         android:text="Classes"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.523"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/spell_recyclerView"
+        android:layout_width="400dp"
+        android:layout_height="328dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/check_paladin" />
+
+    <CheckBox
+        android:id="@+id/check_mage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:checked="false"
+        android:drawableEnd="@drawable/ic_class_mage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/check_hunter" />
+
+    <CheckBox
+        android:id="@+id/check_druid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:checked="false"
+        android:drawableEnd="@drawable/ic_class_druid_alt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spell_title" />
+
+    <CheckBox
+        android:id="@+id/check_paladin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:checked="false"
+        android:drawableEnd="@drawable/ic_class_paladin_alt"
+        app:layout_constraintBottom_toBottomOf="@+id/check_mage"
+        app:layout_constraintEnd_toStartOf="@+id/check_warrior"
+        app:layout_constraintStart_toEndOf="@+id/check_mage"
+        app:layout_constraintTop_toTopOf="@+id/check_mage" />
+
+    <CheckBox
+        android:id="@+id/check_hunter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:drawableEnd="@drawable/ic_class_hunter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/check_druid" />
+
+    <CheckBox
+        android:id="@+id/check_priest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:drawableEnd="@drawable/ic_class_priest"
+        app:layout_constraintBottom_toBottomOf="@+id/check_hunter"
+        app:layout_constraintEnd_toStartOf="@+id/check_rogue"
+        app:layout_constraintStart_toEndOf="@+id/check_hunter"
+        app:layout_constraintTop_toTopOf="@+id/check_hunter" />
+
+    <CheckBox
+        android:id="@+id/check_rogue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:drawableEnd="@drawable/ic_class_rogue"
+        app:layout_constraintBottom_toBottomOf="@+id/check_priest"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/check_priest" />
+
+    <CheckBox
+        android:id="@+id/check_shaman"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:drawableEnd="@drawable/ic_class_shaman_alt"
+        app:layout_constraintBottom_toBottomOf="@+id/check_druid"
+        app:layout_constraintEnd_toStartOf="@+id/check_warlock"
+        app:layout_constraintStart_toEndOf="@+id/check_druid"
+        app:layout_constraintTop_toTopOf="@+id/check_druid" />
+
+    <CheckBox
+        android:id="@+id/check_warlock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:drawableEnd="@drawable/ic_class_warlock"
+        app:layout_constraintBottom_toBottomOf="@+id/check_shaman"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/check_shaman" />
+
+    <CheckBox
+        android:id="@+id/check_warrior"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:drawableEnd="@drawable/ic_class_warrior"
+        app:layout_constraintBottom_toBottomOf="@+id/check_paladin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/check_paladin" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
