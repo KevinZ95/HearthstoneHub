@@ -35,7 +35,7 @@ class DeckManager {
 
         }
     */
-    val accessToken = "USuVhFISaG0vGpniXHZofpy5E13q35GnUK"
+    val accessToken = "USwyNWUua3Tbh8cTAYeWc7tCEFKd0ijTTg"
 
 
     // Searching deck minion
