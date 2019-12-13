@@ -3,6 +3,7 @@ package com.example.hearthstonehub
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.CompoundButton
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -33,6 +34,7 @@ class cards_spell_list : AppCompatActivity() {
         val warlock = findViewById<ImageButton>(R.id.spell_warlock)
         val warrior = findViewById<ImageButton>(R.id.spell_warrior)
 
+        var myLanguage = "en_US" // default
 
 
 
@@ -41,57 +43,35 @@ class cards_spell_list : AppCompatActivity() {
             recyclerView = findViewById(R.id.spell_recyclerView)
             recyclerView.layoutManager = LinearLayoutManager(this, HORIZONTAL, false)
 
-            doAsync {
+            val language = findViewById<CompoundButton>(R.id.language_2)
+            language.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    myLanguage = "zh_CN"
 
-                val cardsManager = CardManager()
-
-                try {
-
-                    val resultList = cardsManager.retrieveSpellInfo("mage")
-
-                    runOnUiThread{
-                        recyclerView.adapter = SpellAdapter(resultList)
-                    }
-                } catch(e: Exception) {
-                    runOnUiThread {
-                        Toast.makeText(this@cards_spell_list,
-                            "Error retriving info",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
+                } else {
+                    myLanguage = "en_US"
                 }
-            }
+            })
 
+            searchSpell("mage", myLanguage, recyclerView)
 
         }
 
         // druid spell
         druid.setOnClickListener {
-
             recyclerView = findViewById(R.id.spell_recyclerView)
             recyclerView.layoutManager = LinearLayoutManager(this, HORIZONTAL, false)
 
-            doAsync {
-
-                val cardsManager = CardManager()
-
-                try {
-
-                    val resultList = cardsManager.retrieveSpellInfo("druid")
-
-                    runOnUiThread{
-                        recyclerView.adapter = SpellAdapter(resultList)
-                    }
-                } catch(e: Exception) {
-                    runOnUiThread {
-                        Toast.makeText(this@cards_spell_list,
-                            "Error retriving info",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
+            val language = findViewById<CompoundButton>(R.id.language_2)
+            language.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    myLanguage = "zh_CN"
+                } else {
+                    myLanguage = "en_US"
                 }
-            }
+            })
 
+            searchSpell("druid", myLanguage, recyclerView)
 
         }
 
@@ -101,27 +81,16 @@ class cards_spell_list : AppCompatActivity() {
             recyclerView = findViewById(R.id.spell_recyclerView)
             recyclerView.layoutManager = LinearLayoutManager(this, HORIZONTAL, false)
 
-            doAsync {
-
-                val cardsManager = CardManager()
-
-                try {
-
-                    val resultList = cardsManager.retrieveSpellInfo("hunter")
-
-                    runOnUiThread{
-                        recyclerView.adapter = SpellAdapter(resultList)
-                    }
-                } catch(e: Exception) {
-                    runOnUiThread {
-                        Toast.makeText(this@cards_spell_list,
-                            "Error retriving info",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
+            val language = findViewById<CompoundButton>(R.id.language_2)
+            language.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    myLanguage = "zh_CN"
+                } else {
+                    myLanguage = "en_US"
                 }
-            }
+            })
 
+            searchSpell("hunter",myLanguage,recyclerView)
 
         }
 
@@ -130,82 +99,48 @@ class cards_spell_list : AppCompatActivity() {
             recyclerView = findViewById(R.id.spell_recyclerView)
             recyclerView.layoutManager = LinearLayoutManager(this, HORIZONTAL, false)
 
-            doAsync {
-
-                val cardsManager = CardManager()
-
-                try {
-
-                    val resultList = cardsManager.retrieveSpellInfo("paladin")
-
-                    runOnUiThread{
-                        recyclerView.adapter = SpellAdapter(resultList)
-                    }
-                } catch(e: Exception) {
-                    runOnUiThread {
-                        Toast.makeText(this@cards_spell_list,
-                            "Error retriving info",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
+            val language = findViewById<CompoundButton>(R.id.language_2)
+            language.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    myLanguage = "zh_CN"
+                } else {
+                    myLanguage = "en_US"
                 }
-            }
+            })
 
-
+            searchSpell("paladin",myLanguage,recyclerView)
         }
         // priest spell
         priest.setOnClickListener {
             recyclerView = findViewById(R.id.spell_recyclerView)
             recyclerView.layoutManager = LinearLayoutManager(this, HORIZONTAL, false)
 
-            doAsync {
-
-                val cardsManager = CardManager()
-
-                try {
-
-                    val resultList = cardsManager.retrieveSpellInfo("priest")
-
-                    runOnUiThread{
-                        recyclerView.adapter = SpellAdapter(resultList)
-                    }
-                } catch(e: Exception) {
-                    runOnUiThread {
-                        Toast.makeText(this@cards_spell_list,
-                            "Error retriving info",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
+            val language = findViewById<CompoundButton>(R.id.language_2)
+            language.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    myLanguage = "zh_CN"
+                } else {
+                    myLanguage = "en_US"
                 }
-            }
+            })
 
-
+            searchSpell("priest",myLanguage,recyclerView)
         }
         // rogue spell
         rogue.setOnClickListener {
             recyclerView = findViewById(R.id.spell_recyclerView)
             recyclerView.layoutManager = LinearLayoutManager(this, HORIZONTAL, false)
 
-            doAsync {
-
-                val cardsManager = CardManager()
-
-                try {
-
-                    val resultList = cardsManager.retrieveSpellInfo("rogue")
-
-                    runOnUiThread{
-                        recyclerView.adapter = SpellAdapter(resultList)
-                    }
-                } catch(e: Exception) {
-                    runOnUiThread {
-                        Toast.makeText(this@cards_spell_list,
-                            "Error retriving info",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
+            val language = findViewById<CompoundButton>(R.id.language_2)
+            language.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    myLanguage = "zh_CN"
+                } else {
+                    myLanguage = "en_US"
                 }
-            }
+            })
+
+            searchSpell("rogue",myLanguage,recyclerView)
 
 
         }
@@ -214,86 +149,82 @@ class cards_spell_list : AppCompatActivity() {
             recyclerView = findViewById(R.id.spell_recyclerView)
             recyclerView.layoutManager = LinearLayoutManager(this, HORIZONTAL, false)
 
-            doAsync {
-
-                val cardsManager = CardManager()
-
-                try {
-
-                    val resultList = cardsManager.retrieveSpellInfo("shaman")
-
-                    runOnUiThread{
-                        recyclerView.adapter = SpellAdapter(resultList)
-                    }
-                } catch(e: Exception) {
-                    runOnUiThread {
-                        Toast.makeText(this@cards_spell_list,
-                            "Error retriving info",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
+            val language = findViewById<CompoundButton>(R.id.language_2)
+            language.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    myLanguage = "zh_CN"
+                } else {
+                    myLanguage = "en_US"
                 }
-            }
+            })
 
-
+            searchSpell("shaman",myLanguage,recyclerView)
         }
         // warlock spell
         warlock.setOnClickListener {
             recyclerView = findViewById(R.id.spell_recyclerView)
             recyclerView.layoutManager = LinearLayoutManager(this, HORIZONTAL, false)
 
-            doAsync {
-
-                val cardsManager = CardManager()
-
-                try {
-
-                    val resultList = cardsManager.retrieveSpellInfo("warlock")
-
-                    runOnUiThread{
-                        recyclerView.adapter = SpellAdapter(resultList)
-                    }
-                } catch(e: Exception) {
-                    runOnUiThread {
-                        Toast.makeText(this@cards_spell_list,
-                            "Error retriving info",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
+            val language = findViewById<CompoundButton>(R.id.language_2)
+            language.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    myLanguage = "zh_CN"
+                } else {
+                    myLanguage = "en_US"
                 }
-            }
+            })
 
-
+            searchSpell("warlock",myLanguage,recyclerView)
         }
         // warrior spell
         warrior.setOnClickListener {
             recyclerView = findViewById(R.id.spell_recyclerView)
             recyclerView.layoutManager = LinearLayoutManager(this, HORIZONTAL, false)
 
-            doAsync {
-
-                val cardsManager = CardManager()
-
-                try {
-
-                    val resultList = cardsManager.retrieveSpellInfo("warrior")
-
-                    runOnUiThread{
-                        recyclerView.adapter = SpellAdapter(resultList)
-                    }
-                } catch(e: Exception) {
-                    runOnUiThread {
-                        Toast.makeText(this@cards_spell_list,
-                            "Error retriving info",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
+            val language = findViewById<CompoundButton>(R.id.language_2)
+            language.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    myLanguage = "zh_CN"
+                } else {
+                    myLanguage = "en_US"
                 }
-            }
+            })
 
+            searchSpell("warrior",myLanguage,recyclerView)
 
         }
 
 
     }
+
+    fun searchSpell(classType: String, myLanguage: String, myView: RecyclerView) {
+
+        doAsync {
+
+            val cardsManager = CardManager()
+            val myID = getString(R.string.client_id)
+            val mySecret = getString(R.string.client_secret)
+            val accessToken = cardsManager.battleNetOAuth(myID, mySecret)
+
+            try {
+
+                val resultList = cardsManager.retrieveSpellInfo(classType, myLanguage, accessToken)
+
+                runOnUiThread{
+                    myView.adapter = SpellAdapter(resultList)
+                }
+            } catch(e: Exception) {
+                runOnUiThread {
+                    Toast.makeText(this@cards_spell_list,
+                        "Error retriving info",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
+
+
+
+    }
+
 }

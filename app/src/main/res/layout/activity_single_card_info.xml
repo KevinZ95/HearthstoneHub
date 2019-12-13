@@ -8,10 +8,37 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/deck_spell_list"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="407dp"
+        android:layout_height="601dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Switch
+        android:id="@+id/language_1"
+        android:layout_width="73dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textOff="@string/language_1_0ff"
+        android:textOn="@string/language_1_on"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="82dp"
+        android:layout_height="18dp"
+        android:text="English/中文"
+        app:layout_constraintEnd_toEndOf="@+id/language_1"
+        app:layout_constraintStart_toStartOf="@+id/language_1"
+        app:layout_constraintTop_toBottomOf="@+id/language_1" />
 </androidx.constraintlayout.widget.ConstraintLayout>

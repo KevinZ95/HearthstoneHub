@@ -17,4 +17,8 @@
 
     <string name="client_id">3bdcb73e964c42468d567ffb2b5cdf5a</string>
     <string name="client_secret">1B1uPKeoZtaEQahIJv5Qgzfk4hiAdxBT</string>
+
+    <string name="language_1_on">中文</string>
+    <string name="language_1_0ff">English</string>
+
 </resources>

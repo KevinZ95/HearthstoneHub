@@ -2,6 +2,7 @@ package com.example.hearthstonehub
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.CompoundButton
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.OrientationHelper.*
@@ -13,6 +14,7 @@ class cards_deck_list : AppCompatActivity() {
 
     private lateinit var recyclerView_spell: RecyclerView
     private lateinit var recyclerView_minion: RecyclerView
+    private var myLanguage = "en_US" // default
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,33 +30,51 @@ class cards_deck_list : AppCompatActivity() {
         recyclerView_spell.layoutManager = LinearLayoutManager(this, HORIZONTAL, false)
         recyclerView_minion.layoutManager = LinearLayoutManager(this, HORIZONTAL, false)
 
-        /*
-        doAsync {
-            val cardManager = CardManager()
-            val cards = cardManager.retrieveWeaponInfo()
 
-            runOnUiThread{
-                recyclerView.adapter = CardAdapter(cards)
+        val language = findViewById<CompoundButton>(R.id.language_3)
+
+        language.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                myLanguage = "zh_CN"
+                searchDeck(deckCodeInput, recyclerView_spell,recyclerView_minion)
+            } else {
+                this.recreate()
             }
+        })
 
-        }
-
-*/
-
+        searchDeck(deckCodeInput, recyclerView_spell,recyclerView_minion)
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+    fun searchDeck(deckCodeInput: String, myView_spell: RecyclerView, myView_minion: RecyclerView) {
         doAsync {
 
             val deckManager = DeckManager()
-
+            val myID = getString(R.string.client_id)
+            val mySecret = getString(R.string.client_secret)
+            val accessToken = deckManager.battleNetOAuth(myID, mySecret)
             try {
 
-                val spellList = deckManager.retrieveDeckSpell(deckCodeInput)
-                val minionlList = deckManager.retrieveDeckMinion(deckCodeInput)
+                val spellList = deckManager.retrieveDeckSpell(deckCodeInput, myLanguage, accessToken)
+                val minionlList = deckManager.retrieveDeckMinion(deckCodeInput, myLanguage, accessToken)
 
                 runOnUiThread{
-                    recyclerView_spell.adapter = SpellAdapter(spellList)
-                    recyclerView_minion.adapter = CardAdapter(minionlList)
+                    myView_spell.adapter = SpellAdapter(spellList)
+                    myView_minion.adapter = CardAdapter(minionlList)
                 }
             } catch(e: Exception) {
                 runOnUiThread {
@@ -65,15 +85,7 @@ class cards_deck_list : AppCompatActivity() {
                 }
             }
         }
+    }
 
 
-
-
-
-
-
-
-
-
-        }
 }

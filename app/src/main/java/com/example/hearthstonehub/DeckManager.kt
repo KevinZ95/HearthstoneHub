@@ -49,12 +49,11 @@ class DeckManager {
 
     // Searching deck minion
 
-    fun retrieveDeckMinion(deckCode: String): List<CardsInfo> {
+    fun retrieveDeckMinion(deckCode: String, language: String, accessToken: String): List<CardsInfo> {
 
-        val locale = "en_US"
-        val accessToken = battleNetOAuth("3bdcb73e964c42468d567ffb2b5cdf5a","1B1uPKeoZtaEQahIJv5Qgzfk4hiAdxBT" )
-        val request = Request.Builder()
-            .url("https://us.api.blizzard.com/hearthstone/deck/$deckCode&?locale=$locale&access_token=$accessToken")
+
+         val request = Request.Builder()
+            .url("https://us.api.blizzard.com/hearthstone/deck/$deckCode&?locale=$language&access_token=$accessToken")
             //.header("Authorization","Bearer USsfKdzCkWSfUmFwk6mN6s5U9pbI0lCdOA")
             .build()
 
@@ -149,12 +148,10 @@ class DeckManager {
     }
 
     // searching spell cards
-    fun retrieveDeckSpell(deckCode: String): List<Spell_Info> {
+    fun retrieveDeckSpell(deckCode: String, language: String, accessToken: String): List<Spell_Info> {
 
-        val locale = "en_US"
-        val accessToken = battleNetOAuth("3bdcb73e964c42468d567ffb2b5cdf5a","1B1uPKeoZtaEQahIJv5Qgzfk4hiAdxBT" )
-        val request = Request.Builder()
-            .url("https://us.api.blizzard.com/hearthstone/deck/$deckCode&?locale=$locale&access_token=$accessToken")
+         val request = Request.Builder()
+            .url("https://us.api.blizzard.com/hearthstone/deck/$deckCode&?locale=$language&access_token=$accessToken")
             //.header("Authorization","Bearer USsfKdzCkWSfUmFwk6mN6s5U9pbI0lCdOA")
             .build()
 
