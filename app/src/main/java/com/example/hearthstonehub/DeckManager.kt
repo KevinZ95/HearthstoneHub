@@ -1,9 +1,11 @@
 package com.example.hearthstonehub
 
 
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.Request
+import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
 
 
@@ -25,17 +27,24 @@ class DeckManager {
 
     }
 
-    /*
-        fun retrieveOAuth(apiKey: String, apiSecret: String ): String{
-            val request = Request.Builder()
-                .url("https://api.twitter.com/oauth2/token")
-                .header("Authorization", "Basic $base64Combined")
-                .post(requestBody)
-                .build()
+    fun battleNetOAuth(client_id: String, client_secret: String): String {
+        val requestBody =
+            "grant_type=client_credentials&client_id=$client_id&client_secret=$client_secret"
+                .toRequestBody(
+                    contentType = "application/x-www-form-urlencoded".toMediaType()
+                )
 
-        }
-    */
-    val accessToken = "USwyNWUua3Tbh8cTAYeWc7tCEFKd0ijTTg"
+        val request = Request.Builder()
+            .url("https://us.battle.net/oauth/token")
+            .post(requestBody)
+            .build()
+
+        val response = okHttpClient.newCall(request).execute()
+        val responseString = response.body?.string()
+        val json = JSONObject(responseString)
+        val accessToken = json.getString("access_token")
+        return accessToken
+    }
 
 
     // Searching deck minion
@@ -43,7 +52,7 @@ class DeckManager {
     fun retrieveDeckMinion(deckCode: String): List<CardsInfo> {
 
         val locale = "en_US"
-
+        val accessToken = battleNetOAuth("3bdcb73e964c42468d567ffb2b5cdf5a","1B1uPKeoZtaEQahIJv5Qgzfk4hiAdxBT" )
         val request = Request.Builder()
             .url("https://us.api.blizzard.com/hearthstone/deck/$deckCode&?locale=$locale&access_token=$accessToken")
             //.header("Authorization","Bearer USsfKdzCkWSfUmFwk6mN6s5U9pbI0lCdOA")
@@ -143,7 +152,7 @@ class DeckManager {
     fun retrieveDeckSpell(deckCode: String): List<Spell_Info> {
 
         val locale = "en_US"
-
+        val accessToken = battleNetOAuth("3bdcb73e964c42468d567ffb2b5cdf5a","1B1uPKeoZtaEQahIJv5Qgzfk4hiAdxBT" )
         val request = Request.Builder()
             .url("https://us.api.blizzard.com/hearthstone/deck/$deckCode&?locale=$locale&access_token=$accessToken")
             //.header("Authorization","Bearer USsfKdzCkWSfUmFwk6mN6s5U9pbI0lCdOA")

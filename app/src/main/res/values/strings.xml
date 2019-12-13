@@ -14,4 +14,7 @@
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
+
+    <string name="client_id">3bdcb73e964c42468d567ffb2b5cdf5a</string>
+    <string name="client_secret">1B1uPKeoZtaEQahIJv5Qgzfk4hiAdxBT</string>
 </resources>

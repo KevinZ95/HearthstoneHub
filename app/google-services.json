@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "58762315136",
+    "firebase_url": "https://hearthstonehub-1a192.firebaseio.com",
+    "project_id": "hearthstonehub-1a192",
+    "storage_bucket": "hearthstonehub-1a192.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:58762315136:android:b8f2d75955fbeb11a9ad65",
+        "android_client_info": {
+          "package_name": "com.example.hearthstonehub"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "58762315136-976veqgqbvk3g4bu6cl3uf5sl5og37qi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbwTUEmt1AdZF7_cw9sPFDafJfJproIvc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "58762315136-976veqgqbvk3g4bu6cl3uf5sl5og37qi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

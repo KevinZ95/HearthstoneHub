@@ -4,7 +4,8 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.Request
 import org.json.JSONObject
-
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.RequestBody.Companion.toRequestBody
 
 class CardManager {
 
@@ -34,15 +35,32 @@ class CardManager {
 
     }
 */
-    val accessToken = "USwyNWUua3Tbh8cTAYeWc7tCEFKd0ijTTg"
+fun battleNetOAuth(client_id: String, client_secret: String): String {
+    val requestBody =
+        "grant_type=client_credentials&client_id=$client_id&client_secret=$client_secret"
+            .toRequestBody(
+                contentType = "application/x-www-form-urlencoded".toMediaType()
+            )
 
+    val request = Request.Builder()
+        .url("https://us.battle.net/oauth/token")
+        .post(requestBody)
+        .build()
+
+    val response = okHttpClient.newCall(request).execute()
+    val responseString = response.body?.string()
+    val json = JSONObject(responseString)
+    val accessToken = json.getString("access_token")
+    return accessToken
+}
 
 
 
     // Searching deck
-
+/*
     fun retrieveDeckInfo(deckCode: String): List<CardsInfo> {
 
+        val accessToken = battleNetOAuth("3bdcb73e964c42468d567ffb2b5cdf5a","1B1uPKeoZtaEQahIJv5Qgzfk4hiAdxBT" )
         val locale = "en_US"
 
         val request = Request.Builder()
@@ -89,13 +107,13 @@ class CardManager {
 
         return deck
     }
-
+*/
         // searching weapon
         fun retrieveWeaponInfo(): List<CardsInfo> {
 
 
             val locale = "en_US"
-
+            val accessToken = battleNetOAuth("3bdcb73e964c42468d567ffb2b5cdf5a","1B1uPKeoZtaEQahIJv5Qgzfk4hiAdxBT" )
 
             val request = Request.Builder()
                 .url("https://us.api.blizzard.com/hearthstone/cards?locale=$locale&type=weapon&sort=name&order=asc&access_token=$accessToken")
@@ -147,6 +165,7 @@ class CardManager {
 
 
         val locale = "en_US"
+        val accessToken = battleNetOAuth("3bdcb73e964c42468d567ffb2b5cdf5a","1B1uPKeoZtaEQahIJv5Qgzfk4hiAdxBT" )
 
         val request = Request.Builder()
             .url("https://us.api.blizzard.com/hearthstone/cards?locale=$locale&type=hero&sort=name&order=asc&access_token=$accessToken")
@@ -199,6 +218,7 @@ class CardManager {
 
 
         val locale = "en_US"
+        val accessToken = battleNetOAuth("3bdcb73e964c42468d567ffb2b5cdf5a","1B1uPKeoZtaEQahIJv5Qgzfk4hiAdxBT" )
 
         val request = Request.Builder()
             .url("https://us.api.blizzard.com/hearthstone/cards?locale=$locale&type=minion&sort=name&order=asc&access_token=$accessToken")
@@ -250,6 +270,7 @@ class CardManager {
 
 
         val locale = "en_US"
+        val accessToken = battleNetOAuth("3bdcb73e964c42468d567ffb2b5cdf5a","1B1uPKeoZtaEQahIJv5Qgzfk4hiAdxBT" )
 
         val classType = classType
 
