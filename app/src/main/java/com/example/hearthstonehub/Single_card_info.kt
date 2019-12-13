@@ -2,20 +2,29 @@ package com.example.hearthstonehub
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.jetbrains.anko.doAsync
 import java.lang.Exception
+import android.widget.CompoundButton
+
+
 
 class Single_card_info : AppCompatActivity() {
 
 
     private lateinit var recyclerView: RecyclerView
 
+    private var myLanguage = "en_US" // default
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_single_card_info)
+
+
+
 
 
         val searchingType: Int = intent.getIntExtra("searchingType", 0)
@@ -27,97 +36,115 @@ class Single_card_info : AppCompatActivity() {
 
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        /*
-        doAsync {
-            val cardManager = CardManager()
-            val cards = cardManager.retrieveWeaponInfo()
 
-            runOnUiThread{
-                recyclerView.adapter = CardAdapter(cards)
+
+        val language = findViewById<CompoundButton>(R.id.language_1)
+
+
+        language.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                myLanguage = "zh_CN"
+                searchCard(searchingType, recyclerView)
+            } else {
+                this.recreate()
+            }
+        })
+
+        searchCard(searchingType,recyclerView)
+
+
+
+
+    }
+
+
+    fun searchCard(searchType: Int, myView: RecyclerView ) {
+
+        if (searchType == 1) { // searching weapon
+            doAsync {
+
+                val cardsManager = CardManager()
+                val myID = getString(R.string.client_id)
+                val mySecret = getString(R.string.client_secret)
+                val accessToken = cardsManager.battleNetOAuth(myID, mySecret)
+
+                try {
+
+                    val resultList = cardsManager.retrieveWeaponInfo(myLanguage, accessToken)
+
+                    runOnUiThread{
+                        myView.adapter = CardAdapter(resultList)
+                    }
+                } catch(e: Exception) {
+                    runOnUiThread {
+                        Toast.makeText(this@Single_card_info,
+                            "Error retriving info",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            }
+        } else if (searchType == 2) { // searching hearo cards
+            doAsync {
+
+                val cardsManager = CardManager()
+                val myID = getString(R.string.client_id)
+                val mySecret = getString(R.string.client_secret)
+                val accessToken = cardsManager.battleNetOAuth(myID, mySecret)
+
+                try {
+
+                    val resultList = cardsManager.retrieveHeroInfo(myLanguage, accessToken)
+
+                    runOnUiThread{
+                        recyclerView.adapter = CardAdapter(resultList)
+                    }
+                } catch(e: Exception) {
+                    runOnUiThread {
+                        Toast.makeText(this@Single_card_info,
+                            "Error retriving info",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            }
+        } else { // minion
+            doAsync {
+
+                val cardsManager = CardManager()
+                val myID = getString(R.string.client_id)
+                val mySecret = getString(R.string.client_secret)
+                val accessToken = cardsManager.battleNetOAuth(myID, mySecret)
+
+                try {
+
+                    val resultList = cardsManager.retrieveMinionInfo(myLanguage, accessToken)
+
+                    runOnUiThread{
+                        myView.adapter = CardAdapter(resultList)
+                    }
+                } catch(e: Exception) {
+                    runOnUiThread {
+                        Toast.makeText(this@Single_card_info,
+                            "Error retriving info",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
             }
 
         }
-*/
-
-
-
-
-        if (searchingType == 1) { // searching weapon
-            doAsync {
-
-                val cardsManager = CardManager()
-
-                try {
-
-                    val resultList = cardsManager.retrieveWeaponInfo()
-
-                    runOnUiThread{
-                        recyclerView.adapter = CardAdapter(resultList)
-                    }
-                } catch(e: Exception) {
-                    runOnUiThread {
-                        Toast.makeText(this@Single_card_info,
-                            "Error retriving info",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                }
-            }
-
-
-        } else if (searchingType == 2) { // searching hearo cards
-            doAsync {
-
-                val cardsManager = CardManager()
-
-                try {
-
-                    val resultList = cardsManager.retrieveHeroInfo()
-
-                    runOnUiThread{
-                        recyclerView.adapter = CardAdapter(resultList)
-                    }
-                } catch(e: Exception) {
-                    runOnUiThread {
-                        Toast.makeText(this@Single_card_info,
-                            "Error retriving info",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                }
-            }
-        } else {
-            doAsync {
-
-                val cardsManager = CardManager()
-
-                try {
-
-                    val resultList = cardsManager.retrieveMinionInfo()
-
-                    runOnUiThread{
-                        recyclerView.adapter = CardAdapter(resultList)
-                    }
-                } catch(e: Exception) {
-                    runOnUiThread {
-                        Toast.makeText(this@Single_card_info,
-                            "Error retriving info",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                }
-            }
-        }
-
-
-
-
 
 
 
 
 
     }
+
+
+
+
+
 
     fun fakeCards(): List<CardsInfo> {
         return listOf(

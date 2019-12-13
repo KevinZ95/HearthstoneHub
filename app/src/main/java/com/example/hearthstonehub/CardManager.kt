@@ -55,68 +55,13 @@ fun battleNetOAuth(client_id: String, client_secret: String): String {
 }
 
 
-
-    // Searching deck
-/*
-    fun retrieveDeckInfo(deckCode: String): List<CardsInfo> {
-
-        val accessToken = battleNetOAuth("3bdcb73e964c42468d567ffb2b5cdf5a","1B1uPKeoZtaEQahIJv5Qgzfk4hiAdxBT" )
-        val locale = "en_US"
-
-        val request = Request.Builder()
-            .url("https://us.api.blizzard.com/hearthstone/deck/$deckCode&?locale=$locale&access_token=$accessToken")
-            //.header("Authorization","Bearer USsfKdzCkWSfUmFwk6mN6s5U9pbI0lCdOA")
-            .build()
-
-        val response = okHttpClient.newCall(request).execute()
-        val responseString = response.body?.string()
-
-        val deck = mutableListOf<CardsInfo>()
-
-        if (response.isSuccessful && !responseString.isNullOrEmpty()) {
-            val json = JSONObject(responseString)
-            val statuses = json.getJSONArray("cards")
-
-            for (i in 0 until statuses.length()) {
-                val curr = statuses.getJSONObject(i)
-                val id = curr.getInt("id")
-                val name = curr.getString("name")
-                val health = curr.getInt("health")
-                val attack = curr.getInt("attack")
-                val manaCost = curr.getInt("manaCost")
-                //val description = curr.getString("text")
-                val flavorText = curr.getString("flavorText")
-                val image = curr.getString("image")
-
-                deck.add(
-                    CardsInfo(
-                        cardID = id,
-                        cardName = name,
-                        health = health,
-                        attack = attack,
-                        manaCost = manaCost,
-                        //description = description,
-                        image = image,
-                        flavorText = flavorText
-                    )
-                )
-            }
-
-            }
-
-
-        return deck
-    }
-*/
         // searching weapon
-        fun retrieveWeaponInfo(): List<CardsInfo> {
+        fun retrieveWeaponInfo(language: String, accessToken: String): List<CardsInfo> {
 
 
-            val locale = "en_US"
-            val accessToken = battleNetOAuth("3bdcb73e964c42468d567ffb2b5cdf5a","1B1uPKeoZtaEQahIJv5Qgzfk4hiAdxBT" )
 
             val request = Request.Builder()
-                .url("https://us.api.blizzard.com/hearthstone/cards?locale=$locale&type=weapon&sort=name&order=asc&access_token=$accessToken")
+                .url("https://us.api.blizzard.com/hearthstone/cards?locale=$language&type=weapon&sort=name&order=asc&access_token=$accessToken")
                 //.header("Authorization","Bearer USsfKdzCkWSfUmFwk6mN6s5U9pbI0lCdOA")
                 .build()
 
@@ -161,14 +106,10 @@ fun battleNetOAuth(client_id: String, client_secret: String): String {
         }
 
     // searching Hero cards
-    fun retrieveHeroInfo(): List<CardsInfo> {
-
-
-        val locale = "en_US"
-        val accessToken = battleNetOAuth("3bdcb73e964c42468d567ffb2b5cdf5a","1B1uPKeoZtaEQahIJv5Qgzfk4hiAdxBT" )
+    fun retrieveHeroInfo(language: String, accessToken: String): List<CardsInfo> {
 
         val request = Request.Builder()
-            .url("https://us.api.blizzard.com/hearthstone/cards?locale=$locale&type=hero&sort=name&order=asc&access_token=$accessToken")
+            .url("https://us.api.blizzard.com/hearthstone/cards?locale=$language&type=hero&sort=name&order=asc&access_token=$accessToken")
             //.header("Authorization","Bearer USsfKdzCkWSfUmFwk6mN6s5U9pbI0lCdOA")
             .build()
 
@@ -214,14 +155,12 @@ fun battleNetOAuth(client_id: String, client_secret: String): String {
     }
 
     // searching minions
-    fun retrieveMinionInfo(): List<CardsInfo> {
+    fun retrieveMinionInfo(language: String, accessToken: String): List<CardsInfo> {
 
 
-        val locale = "en_US"
-        val accessToken = battleNetOAuth("3bdcb73e964c42468d567ffb2b5cdf5a","1B1uPKeoZtaEQahIJv5Qgzfk4hiAdxBT" )
 
         val request = Request.Builder()
-            .url("https://us.api.blizzard.com/hearthstone/cards?locale=$locale&type=minion&sort=name&order=asc&access_token=$accessToken")
+            .url("https://us.api.blizzard.com/hearthstone/cards?locale=$language&type=minion&sort=name&order=asc&access_token=$accessToken")
             //.header("Authorization","Bearer USsfKdzCkWSfUmFwk6mN6s5U9pbI0lCdOA")
             .build()
 
@@ -266,16 +205,13 @@ fun battleNetOAuth(client_id: String, client_secret: String): String {
 
 
     // searching spell
-    fun retrieveSpellInfo(classType: String): List<Spell_Info> {
+    fun retrieveSpellInfo(classType: String, language: String, accessToken: String): List<Spell_Info> {
 
-
-        val locale = "en_US"
-        val accessToken = battleNetOAuth("3bdcb73e964c42468d567ffb2b5cdf5a","1B1uPKeoZtaEQahIJv5Qgzfk4hiAdxBT" )
 
         val classType = classType
 
         val request = Request.Builder()
-            .url("https://us.api.blizzard.com/hearthstone/cards?locale=$locale&class=$classType&type=spell&sort=manaCost&order=asc&access_token=$accessToken")
+            .url("https://us.api.blizzard.com/hearthstone/cards?locale=$language&class=$classType&type=spell&sort=manaCost&order=asc&access_token=$accessToken")
             //.header("Authorization","Bearer USsfKdzCkWSfUmFwk6mN6s5U9pbI0lCdOA")
             .build()
 
